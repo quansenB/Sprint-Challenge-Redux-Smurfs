@@ -5,10 +5,10 @@ import App from './components/App';
 import thunk from 'redux-thunk';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
-import /* You need some sort of reducer */ './reducers';
+import { rootReducer as combinedReducer } from './reducers';
 
 const store = createStore(
-  () => {}, // this is the most basic reducer. A function that returns and object. Replace it.
+  combinedReducer, // this is the most basic reducer. A function that returns and object. Replace it.
   compose(
   applyMiddleware(/* be sure to throw in the proper middlewares here*/thunk), 
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
