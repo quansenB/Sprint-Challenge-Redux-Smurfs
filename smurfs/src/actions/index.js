@@ -6,7 +6,6 @@ import axios from "axios";
 export const FETCHING = "FETCHING";
 export const ADD_SMURF = "ADD_SMURF";
 export const ADD_SMURFS = "ADD_SMURFS";
-export const SUCCESS = "SUCCESS";
 export const FAILURE = "FAILURE";
 /*
   For this project you'll need at least 2 action creators for the main portion,
@@ -31,12 +30,6 @@ export function failure() {
   };
 }
 
-export function success() {
-  return {
-    type: SUCCESS
-  };
-}
-
 export function addSmurf(newSmurf) {
   return {
     type: ADD_SMURF,
@@ -58,7 +51,6 @@ export function getSmurfs() {
       .get("http://localhost:3333/smurfs")
       .then(res => {
         dispatch(addSmurfs(res.data));
-        dispatch(success());
       })
       .catch(err => {
         dispatch(failure());
@@ -70,12 +62,9 @@ export const postSmurf = newSmurf => dispatch => {
   return axios
     .post("http://localhost:3333/smurfs", newSmurf)
     .then(res => {
-      debugger;
       dispatch(addSmurf(res.data[res.data.length-1]));
-      dispatch(success());
     })
     .catch(err => {
-      debugger;
       dispatch(failure());
     });
 };
