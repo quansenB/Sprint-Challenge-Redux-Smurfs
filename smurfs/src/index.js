@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './components/App';
+import App from './components/App.jsx';
 import thunk from 'redux-thunk';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
-import { rootReducer as combinedReducer } from './reducers';
+import { rootReducer } from './reducers';
 
 const store = createStore(
-  combinedReducer, // this is the most basic reducer. A function that returns and object. Replace it.
+  rootReducer, // this is the most basic reducer. A function that returns and object. Replace it.
   compose(
   applyMiddleware(/* be sure to throw in the proper middlewares here*/thunk), 
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()

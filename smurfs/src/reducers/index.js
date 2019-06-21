@@ -23,7 +23,7 @@ const initialState = {
 
 export const rootReducer = (state = initialState, action) => {
   switch (action.type) {
-    case types.GET_SMURFS:
+    case types.ADD_SMURFS:
       return { smurfs: action.payload, fetchingSmurfs: false, error: null };
     case types.FETCHING:
       return { ...state, fetchingSmurfs: true };
