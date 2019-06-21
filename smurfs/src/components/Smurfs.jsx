@@ -12,14 +12,14 @@ class Smurfs extends React.Component {
   render() {
     if (this.props.fetchingSmurfs) {
       return (
-        <div>
-          <div>Fetching Data, please wait...</div>
+        <div className="smurfContainer">
+          <div className="smurf">Fetching Data, please wait...</div>
           {this.props.error && <div>{this.props.error}</div>}
         </div>
       );
     } else {
       return (
-        <div>
+        <div className="smurfContainer">
           {this.props.smurfs.map(smurf => (
             /* console.log(smurf.id) */
             <Smurf name={smurf.name} height={smurf.height} age={smurf.age} key={smurf.id}/>
