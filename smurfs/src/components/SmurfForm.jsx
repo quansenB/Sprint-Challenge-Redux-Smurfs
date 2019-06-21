@@ -1,15 +1,14 @@
 import { connect } from "react-redux";
 import { postSmurf } from "../actions/index.js";
+import React from "react";
 
-class Smurfs extends React.Component {
-  constructor(props) {
-    super(props);
-    const refName = React.createRef();
-    const refAge = React.createRef();
-    const refHeight = React.createRef();
-  }
+function SmurfForm(props) {
 
-  addSmurf(e) {
+  let refName = React.createRef();
+  let refAge = React.createRef();
+  let refHeight = React.createRef();
+
+  const addSmurf = function(e) {
     e.preventDefault();
     postSmurf(
       refName.current.value,
@@ -19,41 +18,42 @@ class Smurfs extends React.Component {
     refName.current.value = "";
     refAge.current.value = "";
     refHeight.current.value = "";
-  }
+  };
 
-  render() {
-    return (
-      <form onSubmit={this.addSmurf}>
+  return (
+    <div>
+      <form onSubmit={addSmurf}>
         <input
           type="text"
           placeholder="Smurf Name"
-          ref={this.refName}
-          value={this.refName.current.value}
+          ref={refName}
+          value={refName.current.value}
         />
         <input
           type="number"
           placeholder="Smurf Age"
-          ref={this.refName}
-          value={this.refName.current.value}
+          ref={refName}
+          value={refName.current.value}
         />
         <input
           type="number"
           placeholder="Smurf Height"
-          ref={this.refName}
-          value={this.refName.current.value}
+          ref={refName}
+          value={refName.current.value}
         />
       </form>
-    );
-  }
+      {props.error && <div>{props.error}</div>}
+    </div>
+  );
 }
 
 function mapStateToProps(state) {
   return {
-    error: state.rootReducer.error
+    error: state.smurfs.error
   };
 }
 
 export default connect(
   mapStateToProps,
-  { postSmurfs }
+  { postSmurf }
 )(SmurfForm);

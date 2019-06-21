@@ -38,9 +38,9 @@ class Smurfs extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    smurfs: state.rootReducer.smurfs,
-    fetchingSmurfs: state.rootReducer.fetchingSmurfs,
-    error: state.rootReducer.error
+    smurfs: state.smurfs.smurfs,
+    fetchingSmurfs: state.smurfs.fetchingSmurfs,
+    error: state.smurfs.error
   };
 }
 
