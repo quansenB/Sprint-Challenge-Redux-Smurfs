@@ -46,11 +46,10 @@ export function addSmurf(newSmurf) {
 
 export function addSmurfs(data) {
   return {
-    type : ADD_SMURFS,
+    type: ADD_SMURFS,
     payload: data
-  }
+  };
 }
-
 
 export function getSmurfs() {
   return dispatch => {
@@ -58,7 +57,7 @@ export function getSmurfs() {
     axios
       .get("http://localhost:3333/smurfs")
       .then(res => {
-        dispatch(addSmurfs(res));
+        dispatch(addSmurfs(res.data));
         dispatch(success());
       })
       .catch(err => {
@@ -67,21 +66,16 @@ export function getSmurfs() {
   };
 }
 
-export function postSmurf(name, height, age) {
-  const newSmurf = {
-    name: name,
-    height: height,
-    age: age
-  };
-  return dispatch => {
-    axios
-      .post("http://localhost:3333/smurfs")
-      .then(res => {
-          dispatch(addSmurf(newSmurf));
-        dispatch(success());
-      })
-      .catch(err => {
-        dispatch(failure());
-      });
-  };
-}
+export const postSmurf = newSmurf => dispatch => {
+  return axios
+    .post("http://localhost:3333/smurfs", newSmurf)
+    .then(res => {
+      debugger;
+      dispatch(addSmurf(res.data[res.data.length-1]));
+      dispatch(success());
+    })
+    .catch(err => {
+      debugger;
+      dispatch(failure());
+    });
+};

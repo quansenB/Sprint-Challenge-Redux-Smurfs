@@ -1,11 +1,9 @@
 import { connect } from "react-redux";
 import { getSmurfs } from "../actions/index.js";
 import React from "react";
+import Smurf from "./Smurf.jsx";
 
 class Smurfs extends React.Component {
-  constructor(props) {
-    super(props);
-  }
 
   componentDidMount() {
     this.props.getSmurfs();
@@ -23,11 +21,8 @@ class Smurfs extends React.Component {
       return (
         <div>
           {this.props.smurfs.map(smurf => (
-            <div className="smurf">
-              <h2>{smurf.name}</h2>
-              <div>Age: {smurf.age}</div>
-              <div>Height: {smurf.height}</div>
-            </div>
+            /* console.log(smurf.id) */
+            <Smurf name={smurf.name} height={smurf.height} age={smurf.age} key={smurf.id}/>
           ))}
           {this.props.error && <div>{this.props.error}</div>}
         </div>
@@ -35,6 +30,7 @@ class Smurfs extends React.Component {
     }
   }
 }
+
 
 function mapStateToProps(state) {
   return {

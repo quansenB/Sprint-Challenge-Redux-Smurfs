@@ -28,7 +28,7 @@ export const rootReducer = (state = initialState, action) => {
     case types.FETCHING:
       return { ...state, fetchingSmurfs: true };
     case types.ADD_SMURF:
-      return { smurfs: state.smurfs.concat(action.payload), ...state };
+      return { smurfs: [state.smurfs, action.payload], ...state };
     case types.SUCCESS:
       return { ...state, fetchingSmurfs: false, error: null };
     case types.FAILURE:

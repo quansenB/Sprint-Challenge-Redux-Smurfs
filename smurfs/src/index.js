@@ -7,12 +7,12 @@ import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 import { rootReducer } from './reducers';
 
-const combinedReducer = combineReducers({smurfs: rootReducer})
+const combinedReducer = combineReducers({smurfs: rootReducer});
 
 const store = createStore(
-  combinedReducer, // this is the most basic reducer. A function that returns and object. Replace it.
+  combinedReducer,
   compose(
-  applyMiddleware(/* be sure to throw in the proper middlewares here*/thunk), 
+  applyMiddleware(thunk), 
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   )
 );
